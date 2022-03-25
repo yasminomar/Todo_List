@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
+    <link href="https://unpkg.com/ionicons@4.2.2/dist/css/ionicons.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Muli:300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/css/style.css">
+    <title>show all events</title>
+</head>
+<body>
+<%- include('../partials/navbar') %> 
+  <header class="page-title">
+    <h1><i class="material-icons">view_list</i>TODO</h1>
+    <div class="tag"> An easy way to manage your work. <span class="caret">|</span></div>
+</header>
+<section class="todo-list-container">
+    <div class="todo-in-progress">
+      <h2> Working lists</h2>
+        <ul ondragstart="" class="todo-list" id="target">
+            <% events.forEach((event)=>{%>
+                <%if(user&&user.id==event.user_id){%>
+            <li draggable="true" class="todo-item high">
+                    <%allTodos.forEach((todo)=>{%>
+                        <%if(todo.list_Id.equals(event._id)){%>
+                            <%if(user&&user.id==todo.user_id){%>
+                                <% switch (filterMethod) {
+                                    case "Finnished": %>
+                                    <%if(todo.status === "Done"){%>
+                                        <div>
+                                            <div class="card mt-3">
+                                                <div class="card-body">
+                                                    <h5 class="card-title text dashed"><%= todo.task%></h5>
+                                                    <h5 class="card-title"><%= todo.DeadLine.toISOString().replace(/T/, ' ').replace(/\..+/, '') %></h5>
+                                                    <h5 class="card-title text "><%= todo.description%></h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <%}%>                                  
+                                        <% break;
+                                    case "JAN": %>
+                                    <%if(todo.DeadLine.getMonth() == 0){%>
+                                        <div >
+                                            <div class="card mt-3">
+                                                <div class="card-body">
+                                                    <%if(todo.status === "working"){%>
+                                                        <h5 class="card-title text"><%= todo.task%></h5>
+                                                        <%}else{%>
+                                                          <h5 class="card-title text dashed"><%= todo.task%></h5>
+                                                          <%}%>
+                                                    <h5 class="card-title"><%= todo.DeadLine.toISOString().replace(/T/, ' ').replace(/\..+/, '') %></h5>
+                                                    <h5 class="card-title text "><%= todo.description%></h5>
+                      
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <%}%>
+                                    <% break;
+                                case "FEB": %>
+                                <%console.log(todo.DeadLine.getMonth())%>
+                                <%if(todo.DeadLine.getMonth() == 1){%>
+                                    <div >
+                                        <div class="card mt-3">
+                                            <div class="card-body">
+                                                <%if(todo.status === "working"){%>
+                                                    <h5 class="card-title text"><%= todo.task%></h5>
+                                                    <%}else{%>
+                                                      <h5 class="card-title text dashed"><%= todo.task%></h5>
+                                                      <%}%>
+                                                <h5 class="card-title"><%= todo.DeadLine.toISOString().replace(/T/, ' ').replace(/\..+/, '') %></h5>
+                                                <h5 class="card-title text "><%= todo.description%></h5>
+                  
+                                            </div>
+                                        </div>
+                                    </div>
+                                <%}%>
+                            <% break;
+                            case "MAR": %>
+                            <%console.log(todo.DeadLine.getMonth())%>
+                            <%if(todo.DeadLine.getMonth() == 2){%>
+                                <div >
+                                    <div class="card mt-3">
+                                        <div class="card-body">
+                                            <%if(todo.status === "working"){%>
+                                                <h5 class="card-title text"><%= todo.task%></h5>
+                                                <%}else{%>
+                                                  <h5 class="card-title text dashed"><%= todo.task%></h5>
+                                                  <%}%>
+                                            <h5 class="card-title"><%= todo.DeadLine.toISOString().replace(/T/, ' ').replace(/\..+/, '') %></h5>
+                                            <h5 class="card-title text "><%= todo.description%></h5>
+              
+                                        </div>
+                                    </div>
+                                </div>
+                            <%}%>
+                            <% break;
+                        case "APR": %>
+                        <%console.log(todo.DeadLine.getMonth())%>
+                        <%if(todo.DeadLine.getMonth() == 3){%>
+                            <div >
+                                <div class="card mt-3">
+                                    <div class="card-body">
+                                        <%if(todo.status === "working"){%>
+                                            <h5 class="card-title text"><%= todo.task%></h5>
+                                            <%}else{%>
+                                              <h5 class="card-title text dashed"><%= todo.task%></h5>
+                                              <%}%>
+                                        <h5 class="card-title"><%= todo.DeadLine.toISOString().replace(/T/, ' ').replace(/\..+/, '') %></h5>
+                                        <h5 class="card-title text "><%= todo.description%></h5>
+          
+                                    </div>
+                                </div>
+                            </div>
+                        <%}%>
+                        <% break;
+                    case "MAY": %>
+                    <%console.log(todo.DeadLine.getMonth())%>
+                    <%if(todo.DeadLine.getMonth() == 4){%>
+                        <div >
+                            <div class="card mt-3">
+                                <div class="card-body">
+                                    <%if(todo.status === "working"){%>
+                                        <h5 class="card-title text"><%= todo.task%></h5>
+                                        <%}else{%>
+                                          <h5 class="card-title text dashed"><%= todo.task%></h5>
+                                          <%}%>
+                                    <h5 class="card-title"><%= todo.DeadLine.toISOString().replace(/T/, ' ').replace(/\..+/, '') %></h5>
+                                    <h5 class="card-title text "><%= todo.description%></h5>
+      
+                                </div>
+                            </div>
+                        </div>
+                    <%}%>
+                    <% break;
+                case "JUN": %>
+                <%console.log(todo.DeadLine.getMonth())%>
+                <%if(todo.DeadLine.getMonth() == 5){%>
+                    <div >
+                        <div class="card mt-3">
+                            <div class="card-body">
+                                <%if(todo.status === "working"){%>
+                                    <h5 class="card-title text"><%= todo.task%></h5>
+                                    <%}else{%>
+                                      <h5 class="card-title text dashed"><%= todo.task%></h5>
+                                      <%}%>
+                                <h5 class="card-title"><%= todo.DeadLine.toISOString().replace(/T/, ' ').replace(/\..+/, '') %></h5>
+                                <h5 class="card-title text "><%= todo.description%></h5>
+  
+                            </div>
+                        </div>
+                    </div>
+                <%}%>
+                <% break;
+            case "JUL": %>
+            <%console.log(todo.DeadLine.getMonth())%>
+            <%if(todo.DeadLine.getMonth() == 6){%>
+                <div >
+                    <div class="card mt-3">
+                        <div class="card-body">
+                            <%if(todo.status === "working"){%>
+                                <h5 class="card-title text"><%= todo.task%></h5>
+                                <%}else{%>
+                                  <h5 class="card-title text dashed"><%= todo.task%></h5>
+                                  <%}%>
+                            <h5 class="card-title"><%= todo.DeadLine.toISOString().replace(/T/, ' ').replace(/\..+/, '') %></h5>
+                            <h5 class="card-title text "><%= todo.description%></h5>
+
+                        </div>
+                    </div>
+                </div>
+            <%}%>
+            <% break;
+            case "AUG": %>
+            <%console.log(todo.DeadLine.getMonth())%>
+            <%if(todo.DeadLine.getMonth() == 7){%>
+                <div >
+                    <div class="card mt-3">
+                        <div class="card-body">
+                            <%if(todo.status === "working"){%>
+                                <h5 class="card-title text"><%= todo.task%></h5>
+                                <%}else{%>
+                                  <h5 class="card-title text dashed"><%= todo.task%></h5>
+                                  <%}%>
+                            <h5 class="card-title"><%= todo.DeadLine.toISOString().replace(/T/, ' ').replace(/\..+/, '') %></h5>
+                            <h5 class="card-title text "><%= todo.description%></h5>
+
+                        </div>
+                    </div>
+                </div>
+            <%}%>
+            <% break;
+        case "SEP": %>
+        <%console.log(todo.DeadLine.getMonth())%>
+        <%if(todo.DeadLine.getMonth() == 8){%>
+            <div >
+                <div class="card mt-3">
+                    <div class="card-body">
+                        <%if(todo.status === "working"){%>
+                            <h5 class="card-title text"><%= todo.task%></h5>
+                            <%}else{%>
+                              <h5 class="card-title text dashed"><%= todo.task%></h5>
+                              <%}%>
+                        <h5 class="card-title"><%= todo.DeadLine.toISOString().replace(/T/, ' ').replace(/\..+/, '') %></h5>
+                        <h5 class="card-title text "><%= todo.description%></h5>
+
+                    </div>
+                </div>
+            </div>
+        <%}%>
+        <% break;
+    case "OCT": %>
+    <%console.log(todo.DeadLine.getMonth())%>
+    <%if(todo.DeadLine.getMonth() == 9){%>
+        <div >
+            <div class="card mt-3">
+                <div class="card-body">
+                    <%if(todo.status === "working"){%>
+                        <h5 class="card-title text"><%= todo.task%></h5>
+                        <%}else{%>
+                          <h5 class="card-title text dashed"><%= todo.task%></h5>
+                          <%}%>
+                    <h5 class="card-title"><%= todo.DeadLine.toISOString().replace(/T/, ' ').replace(/\..+/, '') %></h5>
+                    <h5 class="card-title text "><%= todo.description%></h5>
+
+                </div>
+            </div>
+        </div>
+    <%}%>
+    <% break;
+  case "NOV": %>
+  <%console.log(todo.DeadLine.getMonth())%>
+  <%if(todo.DeadLine.getMonth() == 10){%>
+      <div >
+          <div class="card mt-3">
+              <div class="card-body">
+                  <%if(todo.status === "working"){%>
+                      <h5 class="card-title text"><%= todo.task%></h5>
+                      <%}else{%>
+                        <h5 class="card-title text dashed"><%= todo.task%></h5>
+                        <%}%>
+                  <h5 class="card-title"><%= todo.DeadLine.toISOString().replace(/T/, ' ').replace(/\..+/, '') %></h5>
+                  <h5 class="card-title text "><%= todo.description%></h5>
+
+              </div>
+          </div>
+      </div>
+  <%}%>
+  <% break;
+  case "DEC": %>  
+  <%console.log(todo.DeadLine.getMonth())%>
+  <%if(todo.DeadLine.getMonth() == 11){%>
+      <div >
+          <div class="card mt-3">
+              <div class="card-body">
+                  <%if(todo.status === "working"){%>
+                      <h5 class="card-title text"><%= todo.task%></h5>
+                      <%}else{%>
+                        <h5 class="card-title text dashed"><%= todo.task%></h5>
+                        <%}%>
+                  <h5 class="card-title"><%= todo.DeadLine.toISOString().replace(/T/, ' ').replace(/\..+/, '') %></h5>
+                  <h5 class="card-title text "><%= todo.description%></h5>
+
+              </div>
+          </div>
+      </div>
+  <%}%>                                
+                               
+                                  <% break;
+                                    default:
+                                    break; } %>
+                          <%}}})%>
+            </li>
+            <%}%>
+            <% })%>
+        </ul>
+    </div>
+</section>
+<%- include('../partials/footer') %> 
+

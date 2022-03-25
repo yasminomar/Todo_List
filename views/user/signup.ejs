@@ -1,0 +1,38 @@
+<%- include('../partials/headers') %> 
+<div class="container " >
+
+    <div class="form-container">
+
+        <form action="/users/signup" method="post">
+            <h1>Create Account</h1>
+
+            <div class="social-container">
+                <a href="#" class="social">
+                    <ion-icon name="logo-facebook"></ion-icon>
+                </a>
+                <a href="#" class="social">
+                    <ion-icon name="logo-googleplus"></ion-icon>
+                </a>
+                <a href="#" class="social">
+                    <ion-icon name="logo-linkedin"></ion-icon>
+                </a>
+            </div>
+            <span>or use your email for registration</span>
+            <%- include('../partials/flashMessages') %> 
+
+
+                <input type="email" name="email" id="email" class="form-control" placeholder="Email">
+
+
+
+                <input type="password" name="password" id="password" class="form-control" placeholder="Password">
+
+
+                <input type="password" name="ConfirmPassword" id="ConfirmPassword" class="form-control" placeholder="Confirm Password">
+            
+
+            <button>Sign Up</button>
+        </form>
+    </div>
+</div>
+<%- include('../partials/footer') %> 

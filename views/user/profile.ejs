@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
+    <link href="https://unpkg.com/ionicons@4.2.2/dist/css/ionicons.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Muli:300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/css/style.css">
+
+    <title>show all events</title>
+</head>
+<body>
+
+
+  <header class="page-title">
+    <h1><i class="material-icons">view_list</i>TODO</h1>
+    <div class="tag"> An easy way to manage your work. <span class="caret">|</span></div>
+    <a class="btn btn-dark" href="/events/create">Add New List </a>
+    <div>
+        <div class="icon_container">
+            <select onchange="val()" id="filter">
+                <option disabled selected="true">Filter</option>
+                <option>Finnished</option>
+                <option>JAN</option>
+                <option>FEB</option>
+                <option>MAR</option>
+                <option>APR</option>
+                <option>MAY</option>
+                <option>JUN</option>
+                <option>JUL</option>
+                <option>AUG</option>
+                <option>SEP</option>
+                <option>OCT</option>
+                <option>NOV</option>
+                <option>DEC</option>
+            </select>
+        </div>
+        <div class="calender_icon">
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+    
+        </div>
+    </div>
+    
+   
+
+
+</header>
+<section class="todo-list-container">
+    <div class="todo-in-progress">
+      <h2> Working lists</h2>
+        <ul ondragstart="" class="todo-list" id="target">
+            <% events.forEach((event)=>{%>
+                <%if(user&&user.id==event.user_id){%>
+            <li draggable="true" class="todo-item high">
+                <div class="card">
+                    <h3 class="todo-title"> 
+                        <span class="action">
+                            <a href="<%= '/events/deleteList/' + event._id %>" class="material-icons md-36 icon-delete">delete</a>
+                            <a class="complete material-icons md-36 md-light " href="/events/createTodo<%= event._id%>">add_circle_outline</a>
+                        </span> 
+                        <span class="title"><%= event.ListName%></span>
+                    </h3>
+                    <%allTodos.forEach((todo)=>{%>
+                        <%if(todo.list_Id.equals(event._id)){%>
+                            <%if(user&&user.id==todo.user_id){%>
+
+                            <div >
+                                <div class="card mt-3">
+                                    <div class="card-body">
+                                      <%if(todo.status === "working"){%>
+                                        <h5 class="card-title text"><%= todo.task%></h5>
+                                        <%}else{%>
+                                          <h5 class="card-title text dashed"><%= todo.task%></h5>
+                                          <%}%>
+                                      <h5 class="card-title"><%= todo.DeadLine.toISOString().replace(/T/, ' ').replace(/\..+/, '') %></h5>
+      
+                                      <a href="<%= '/events/edit/' + todo._id %>" class="btn btn-secondary">Edit</a>
+                                      <a href="<%= '/events/delete/' + todo._id %>" class="btn btn-danger" onclick="confirm('Are you sure you want to delete this item?');">Delete</a>
+                                      <a href="<%= '/events/update/' + todo._id %>" class="btn btn-success " onclick="remove(this)" btnId="<%=todo._id%>">Done</a>
+
+          
+                                    </div>
+                                </div>
+                              </div>
+                          <%}}})%>
+                </div>
+
+            </li>
+            <%}%>
+
+
+            <% })%>
+
+        </ul>
+    </div>
+</section>
+    
+
+
+
+<%- include('../partials/footer') %> 
+

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
+    <link href="https://unpkg.com/ionicons@4.2.2/dist/css/ionicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Muli:300' rel='stylesheet' type='text/css'>
+    <title>show all events</title>
+</head>
+<body>
+  <%- include('../partials/flashMessages') %> 
+<main role="main" class="main-wrap ">
+    <header role="heading" class="header">
+      <h1 class="app-header"> Add your task </h1>
+    </header>
+    <section class="main-content">
+      <section class="todo-form">
+        <form action="/events/update" method="post" >
+          <div class="row">
+            <label for="task"> Task </label>
+            <input class="form-input" id="task" type="text" name="task"  value="<%= todo.task%>"/>
+          </div>
+          <input type="hidden" name="id" value="<%=todo._id%>">
+          <div class="row">
+            <label for="description"> Description </label>
+            <textarea id="description" rows="5" cols="30" name="description"><%= todo.description%></textarea>
+          </div>
+          <div class="row">
+            <label for="DeadLine"> DeadLine </label>
+            <input type="date" name="DeadLine" id="DeadLine" class="form-input" value="<%= eventDate%>">
+        </div>
+          <div class="row submit-btn">
+            <input type="submit" class="primary-button" value="Update" />
+          </div>
+        </form>
+        <%- include('../partials/flashMessages') %> 
+      </section>
+    </section>
+  </main>
+  <%- include('../partials/footer') %> 
