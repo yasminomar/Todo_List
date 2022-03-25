@@ -12,6 +12,7 @@ const res = require("express/lib/response")
 const cors = require("cors")
 
 app.set('view engine', 'ejs')
+const port = process.env.PORT || 3000
 
 
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -51,6 +52,4 @@ app.get('/',(req,res)=>{
 
 
 
-app.listen(3000,()=>{
-    console.log("app is listen to 3000 port")
-})
+app.listen(port,()=> console.log(`app is listen to ${port} port`))
