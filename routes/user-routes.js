@@ -35,11 +35,12 @@ router.post('/login',
     failureFlash: true })
 )
 
+var result=[];
 
 
 router.get('/profile',isAuthenticated,(req,res)=>{
     Todo.find({},(err,res)=>{
-        result=res;
+         result=res;
     })
     List.find({},{},(err,events)=>{
         res.render('user/profile',{
