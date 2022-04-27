@@ -1,5 +1,8 @@
 Features:
-•	Admin Dashboard
-•	Filtration Using Ajax Request
-•	Paging, Search, Sorting
-•	Applied Microsoft Identity (Authentication & Authorization)
+•	User can create an account with name, email, and password.
+•	User can login to see his/her TODOs and the date every TODO was created on.
+•	User can add new TODO to his/her existing TODOs.
+•	User can update an existed TODO.
+•	User can delete any TODO.
+•	User can see his/her TODOs grouped by the month TODOs were created on.
+•	User can make a group of TODOs so that he/she can track the finished and unfinished related tasks easily
